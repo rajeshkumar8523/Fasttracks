@@ -1,0 +1,4259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101010">
+    <title>Fasttracks Car Care</title>
+    <meta name="description"
+        content="Premium automotive customisation, PPF, ceramic coating, luxury interiors and detailing in Jubilee Hills, Hyderabad.">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="fasttracks_icon.png">
+    <link rel="apple-touch-icon" href="fasttracks_icon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=DM+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ink: "#101010",
+                        gold: "#c7a56b",
+                        cream: "#f4f0e9"
+                    },
+                    fontFamily: {
+                        display: ["Bodoni Moda", "serif"],
+                        sans: ["DM Sans", "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        :root {
+            --gold: #c7a56b;
+            --ink: #101010;
+            --cream: #f4f0e9;
+            --muted: #77736b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            margin: 0;
+            background: var(--cream);
+            color: #171717;
+            font-family: "DM Sans", sans-serif;
+            overflow-x: hidden;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        ::selection {
+            color: #111;
+            background: var(--gold);
+        }
+
+        .display {
+            font-family: "Bodoni Moda", serif;
+        }
+
+        .gold {
+            color: var(--gold);
+        }
+
+
+
+        /* SCROLL PROGRESS */
+        #scrollProgress {
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gold);
+            pointer-events: none;
+        }
+
+        /* HEADER */
+        #siteHeader {
+            position: fixed;
+            inset: 0 0 auto;
+            z-index: 1000;
+            color: white;
+            background: transparent;
+
+            transition:
+                background .4s ease,
+                color .4s ease,
+                box-shadow .4s ease,
+                border-color .4s ease;
+        }
+
+        .header-inner {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 25px;
+            width: 100%;
+            max-width: 1600px;
+            height: 88px;
+            margin: auto;
+            padding: 0 5%;
+        }
+
+        .brand {
+            display: inline-flex;
+            flex-direction: column;
+            width: fit-content;
+            color: inherit;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        .brand-name {
+            font-family: "Bodoni Moda", serif;
+            font-size: clamp(19px, 2vw, 27px);
+            letter-spacing: 2px;
+        }
+
+        .brand-sub {
+            margin-top: 7px;
+            font-size: 8px;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+        }
+
+        /* BRAND LOGO & TEXT LAYOUT */
+        .brand {
+            display: inline-flex;
+            flex-direction: row;
+            /* Places image and text side-by-side */
+            align-items: center;
+            gap: 12px;
+            /* Space between logo and text */
+            width: fit-content;
+            color: inherit;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .brand:hover {
+            opacity: 0.85;
+        }
+
+        .brand-logo {
+            width: 42px;
+            /* Adjust size of the logo */
+            height: auto;
+            object-fit: contain;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        .brand-name {
+            font-family: "Bodoni Moda", serif;
+            font-size: clamp(19px, 2vw, 27px);
+            letter-spacing: 2px;
+        }
+
+        .brand-sub {
+            margin-top: 6px;
+            font-size: 8px;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+        }
+
+        /* Mobile adjustment for logo */
+        @media (max-width: 760px) {
+            .brand-logo {
+                width: 32px;
+                /* Slightly smaller on mobile to fit */
+            }
+
+            .brand {
+                gap: 8px;
+            }
+
+            .brand-name {
+                font-size: 22px;
+            }
+        }
+
+        .desktop-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: clamp(16px, 2.1vw, 32px);
+            white-space: nowrap;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 12px 0;
+            color: inherit;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: color .3s ease;
+        }
+
+        .nav-link::after {
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            content: "";
+            transition: width .3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--gold);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .header-action {
+            justify-self: end;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 13px 18px;
+            color: inherit;
+            border: 1px solid var(--gold);
+            font-size: 9px;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+            transition: .3s ease;
+            white-space: nowrap;
+        }
+
+        .header-action:hover {
+            color: #111;
+            background: var(--gold);
+        }
+
+        #siteHeader.scrolled {
+            color: #171717;
+            background: rgba(255, 255, 255, .96);
+            border-color: rgba(0, 0, 0, .08);
+            box-shadow: 0 8px 35px rgba(0, 0, 0, .07);
+            backdrop-filter: blur(18px);
+        }
+
+        /* MENU TOGGLE BUTTON (Base State) */
+        #menuToggle {
+            display: none;
+            width: 53px;
+            height: 53px;
+            color: inherit;
+            background: transparent;
+            border: 1px solid transparent;
+            cursor: pointer;
+            position: relative;
+            z-index: 1001;
+            transition: color 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        /* MENU TOGGLE HOVER (When Menu is Closed) */
+        #menuToggle:hover {
+            color: var(--gold);
+            border-color: var(--gold);
+        }
+
+        /* MENU TOGGLE OPEN STATE (X button showing) */
+        body.menu-open #menuToggle,
+        #mobileMenu.open~#menuToggle {
+            color: #ffffff;
+            background: #101010;
+            border-color: #101010;
+        }
+
+        /* Hover effect when the menu is already open */
+        body.menu-open #menuToggle:hover,
+        #mobileMenu.open~#menuToggle:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: #101010;
+        }
+
+        /* MOBILE MENU SIDE DRAWER */
+        #mobileMenu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 75%;
+            max-width: 340px;
+            height: 100dvh;
+            padding: 100px 8% 40px;
+            color: #171717;
+            background: #ffffff;
+            border-left: 1px solid #e9e5de;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+
+            /* Slide-in animation */
+            transform: translateX(100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1),
+                opacity 0.45s ease,
+                visibility 0.45s ease;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
+        }
+
+        /* MOBILE MENU OVERLAY (Dark backdrop) */
+        #mobileMenu::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #e9e5de;
+            /* Dark overlay over the site */
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        /* Open State */
+        #mobileMenu.open {
+            transform: translateX(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #mobileMenu.open::before {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* MOBILE LINKS */
+        .mobile-link {
+            display: block;
+            padding: 18px 0;
+            border-bottom: 1px solid #f0ece4;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #5f5b54;
+            position: relative;
+            transition: color 0.3s ease, padding-left 0.3s ease;
+        }
+
+        /* Small gold line indicator */
+        .mobile-link::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        /* Link Hover Effect */
+        .mobile-link:hover {
+            color: var(--gold);
+            padding-left: 16px;
+        }
+
+        .mobile-link:hover::before {
+            width: 8px;
+        }
+
+        /* =========================================
+           HIDE ON DESKTOP (Placed AFTER the main CSS)
+           ========================================= */
+        @media (min-width: 761px) {
+            #mobileMenu {
+                display: none !important;
+            }
+        }
+
+        /* SHOW TOGGLE ON MOBILE */
+        @media (max-width: 760px) {
+            #menuToggle {
+                display: flex;
+            }
+        }
+
+        /* BUTTONS */
+        .btn-gold,
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            min-height: 52px;
+            padding: 0 24px;
+            font-size: 10px;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            transition:
+                background .3s ease,
+                color .3s ease,
+                border-color .3s ease,
+                transform .3s ease,
+                box-shadow .3s ease;
+        }
+
+        .btn-gold {
+            color: #111;
+            background: var(--gold);
+            border: 1px solid var(--gold);
+        }
+
+        .btn-gold:hover {
+            background: #e4c995;
+            border-color: #e4c995;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(199, 165, 107, .22);
+        }
+
+        .btn-outline {
+            color: white;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, .55);
+        }
+
+        .btn-outline:hover {
+            color: var(--gold);
+            border-color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        /* HERO VIDEO */
+        .hero {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 100svh;
+            min-height: 700px;
+            max-height: 1100px;
+            overflow: hidden;
+            color: white;
+            background: #111;
+            isolation: isolate;
+        }
+
+        .hero-fallback,
+        #heroVideo,
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-fallback {
+            z-index: -2;
+            background:
+                url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=2200&q=85") center/cover no-repeat;
+        }
+
+
+        #heroVideo {
+            z-index: -1;
+            object-fit: cover;
+            object-position: center;
+            animation: videoReveal 2s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+        }
+
+        @keyframes videoReveal {
+            from {
+                opacity: 0;
+                transform: scale(1.05);
+                /* Slight zoom out effect */
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .hero-overlay {
+            z-index: 0;
+            background:
+                linear-gradient(90deg, rgba(7, 7, 7, .88), rgba(7, 7, 7, .52) 53%, rgba(7, 7, 7, .15)),
+                linear-gradient(0deg, rgba(0, 0, 0, .5), transparent 45%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1500px;
+            margin: auto;
+            padding: 130px 8% 90px;
+        }
+
+        .eyebrow,
+        .section-kicker {
+            color: #a7854c;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 28px;
+            color: var(--gold);
+            animation: fadeUp .9s .15s both;
+        }
+
+        .eyebrow::before {
+            width: 40px;
+            height: 1px;
+            background: var(--gold);
+            content: "";
+        }
+
+        .hero h1 {
+            max-width: 900px;
+            margin: 0;
+            font-size: clamp(52px, 7.5vw, 108px);
+            font-weight: 400;
+            line-height: 1.02;
+            letter-spacing: -3px;
+            animation: fadeUp 1s .3s both;
+        }
+
+        .hero h1 em {
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        .hero-description {
+            max-width: 470px;
+            margin-top: 28px;
+            color: rgba(255, 255, 255, .76);
+            font-size: 13px;
+            line-height: 2;
+            animation: fadeUp 1s .45s both;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 34px;
+            animation: fadeUp 1s .6s both;
+        }
+
+        .hero-bottom {
+            position: absolute;
+            z-index: 2;
+            right: 8%;
+            bottom: 32px;
+            left: 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgba(255, 255, 255, .75);
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .scroll-indicator {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .scroll-indicator i {
+            color: var(--gold);
+            animation: arrowBounce 1.5s infinite;
+        }
+
+        /* MARQUEE */
+        .marquee {
+            overflow: hidden;
+            padding: 22px 0;
+            color: #111;
+            background: var(--gold);
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marquee 35s linear infinite;
+        }
+
+        .marquee:hover .marquee-track {
+            animation-play-state: paused;
+        }
+
+        .marquee-item {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            padding: 0 26px;
+            font-family: "Bodoni Moda", serif;
+            font-size: 18px;
+            white-space: nowrap;
+        }
+
+        .marquee-item i {
+            font-size: 8px;
+        }
+
+        /* COMMON SECTION STYLES */
+        .section {
+            position: relative;
+            padding: 110px 8%;
+        }
+
+        .section-title {
+            margin: 16px 0 0;
+            font-family: "Bodoni Moda", serif;
+            font-size: clamp(38px, 5.2vw, 68px);
+            font-weight: 400;
+            line-height: 1.12;
+            letter-spacing: -1.5px;
+        }
+
+        .section-copy {
+            color: #6d6962;
+            font-size: 13px;
+            line-height: 2;
+        }
+
+        /* ABOUT */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 9%;
+        }
+
+        .about-image-wrap {
+            position: relative;
+            min-height: 500px;
+        }
+
+        .about-image {
+            position: absolute;
+            inset: 0 30px 30px 0;
+            width: calc(100% - 30px);
+            height: calc(100% - 30px);
+            object-fit: cover;
+            transition: transform .8s ease;
+        }
+
+        .about-image-wrap:hover .about-image {
+            transform: scale(1.025);
+        }
+
+        .about-image-accent {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 55%;
+            height: 45%;
+            border: 1px solid var(--gold);
+            pointer-events: none;
+        }
+
+        .experience-card {
+            position: absolute;
+            right: 0;
+            bottom: 50px;
+            z-index: 2;
+            padding: 22px 27px;
+            color: #111;
+            background: var(--gold);
+            transition: transform .3s ease;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .experience-card strong {
+            display: block;
+            font-family: "Bodoni Moda", serif;
+            font-size: 39px;
+            font-weight: 400;
+        }
+
+        .experience-card span {
+            font-size: 9px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* CEO SECTION */
+        .ceo-section {
+            position: relative;
+            padding: 110px 8%;
+            background: linear-gradient(135deg, #f4f0e9 0%, #ece5d9 100%);
+            overflow: hidden;
+        }
+
+        .ceo-section::before {
+            content: "";
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(199, 165, 107, .12) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .ceo-grid {
+            display: grid;
+            grid-template-columns: .85fr 1.15fr;
+            align-items: center;
+            gap: 8%;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* CEO IMAGE SLIDER */
+        .ceo-image-wrap {
+            position: relative;
+            width: 100%;
+            height: 520px;
+            /* Fixed height to keep layout stable */
+        }
+
+        .ceo-slider {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            box-shadow: 20px 20px 0 0 var(--gold);
+            transition: transform .7s ease, box-shadow .7s ease;
+        }
+
+        .ceo-image-wrap:hover .ceo-slider {
+            transform: translate(6px, 6px);
+            box-shadow: 14px 14px 0 0 var(--gold);
+        }
+
+        .ceo-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+            /* Smooth 1.2s crossfade */
+            z-index: 1;
+        }
+
+        .ceo-image.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 760px) {
+            .ceo-image-wrap {
+                height: 380px;
+            }
+
+            .ceo-slider {
+                box-shadow: 14px 14px 0 0 var(--gold);
+            }
+        }
+
+        .ceo-signature {
+            margin-top: 30px;
+            font-family: "Bodoni Moda", serif;
+            font-size: 28px;
+            font-style: italic;
+            color: #a7854c;
+            opacity: .9;
+        }
+
+        .ceo-content .section-title {
+            margin-top: 12px;
+        }
+
+        .ceo-role {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 6px 16px;
+            color: #111;
+            background: var(--gold);
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .ceo-quote {
+            position: relative;
+            margin: 28px 0;
+            padding-left: 28px;
+            border-left: 2px solid var(--gold);
+            font-family: "Bodoni Moda", serif;
+            font-size: 19px;
+            line-height: 1.8;
+            font-style: italic;
+            color: #3a362f;
+        }
+
+        .ceo-quote i {
+            position: absolute;
+            top: -8px;
+            left: 10px;
+            color: var(--gold);
+            font-size: 22px;
+            opacity: .4;
+        }
+
+        /* WHY FASTTRACKS — ADVANCED FEATURES */
+        .why-advanced {
+            background: #151515;
+            color: white;
+        }
+
+        .why-advanced .section-title {
+            color: white;
+        }
+
+        .why-advanced .section-kicker {
+            color: var(--gold);
+        }
+
+        .why-advanced .section-copy {
+            color: #aaa69e;
+        }
+
+        .why-features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            margin-top: 55px;
+        }
+
+        .why-feature-card {
+            position: relative;
+            padding: 38px 28px;
+            background: #1c1c1c;
+            border: 1px solid #2e2d2a;
+            overflow: hidden;
+            transition: transform .45s cubic-bezier(.2, .7, .2, 1), border-color .45s ease, background .45s ease;
+        }
+
+        .why-feature-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .5s ease;
+        }
+
+        .why-feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(199, 165, 107, .4);
+            background: #1f1f1d;
+        }
+
+        .why-feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .why-feature-icon {
+            display: grid;
+            place-items: center;
+            width: 58px;
+            height: 58px;
+            margin-bottom: 24px;
+            color: var(--gold);
+            border: 1px solid rgba(199, 165, 107, .35);
+            font-size: 22px;
+            transition: background .4s ease, color .4s ease, transform .4s ease;
+        }
+
+        .why-feature-card:hover .why-feature-icon {
+            background: var(--gold);
+            color: #111;
+            transform: rotate(-6deg) scale(1.05);
+        }
+
+        .why-feature-card h3 {
+            margin: 0 0 12px;
+            font-family: "Bodoni Moda", serif;
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: -.3px;
+        }
+
+        .why-feature-card p {
+            margin: 0;
+            color: #9b978f;
+            font-size: 12.5px;
+            line-height: 1.9;
+        }
+
+        .why-feature-number {
+            position: absolute;
+            top: 18px;
+            right: 22px;
+            color: #2e2d2a;
+            font-family: "Bodoni Moda", serif;
+            font-size: 46px;
+            line-height: 1;
+            transition: color .4s ease;
+        }
+
+        .why-feature-card:hover .why-feature-number {
+            color: rgba(199, 165, 107, .25);
+        }
+
+        /* TESTIMONIALS */
+        .testimonials-section {
+            position: relative;
+            padding: 110px 8%;
+            background: #f4f0e9;
+            overflow: hidden;
+        }
+
+        .testimonials-section::after {
+            content: "";
+            position: absolute;
+            bottom: -20%;
+            left: -8%;
+            width: 420px;
+            height: 420px;
+            background: radial-gradient(circle, rgba(199, 165, 107, .14) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .testimonials-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 30px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonials-intro {
+            max-width: 360px;
+            color: #6d6962;
+            font-size: 12.5px;
+            line-height: 2;
+        }
+
+        .testimonial-slider {
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-track {
+            display: flex;
+            gap: 26px;
+            transition: transform .6s cubic-bezier(.25, .8, .25, 1);
+            will-change: transform;
+        }
+
+        .testimonial-card {
+            flex: 0 0 calc(50% - 13px);
+            position: relative;
+            padding: 42px 38px 34px;
+            background: white;
+            border: 1px solid #e6dfd3;
+            box-shadow: 0 15px 40px rgba(40, 30, 15, .045);
+            transition: transform .45s cubic-bezier(.2, .7, .2, 1), box-shadow .45s ease, border-color .45s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 55px rgba(40, 30, 15, .1);
+            border-color: rgba(199, 165, 107, .5);
+        }
+
+        .testimonial-card::before {
+            content: "\201C";
+            position: absolute;
+            top: 18px;
+            right: 32px;
+            font-family: "Bodoni Moda", serif;
+            font-size: 90px;
+            line-height: 1;
+            color: rgba(199, 165, 107, .18);
+            pointer-events: none;
+        }
+
+        .testimonial-stars {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+            color: var(--gold);
+            font-size: 12px;
+        }
+
+        .testimonial-text {
+            margin: 0 0 28px;
+            font-family: "Bodoni Moda", serif;
+            font-size: 18px;
+            line-height: 1.85;
+            color: #2e2b26;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-top: 22px;
+            border-top: 1px solid #ede7dc;
+        }
+
+        .testimonial-avatar {
+            display: grid;
+            place-items: center;
+            width: 50px;
+            height: 50px;
+            flex-shrink: 0;
+            color: #111;
+            background: var(--gold);
+            border-radius: 50%;
+            font-family: "Bodoni Moda", serif;
+            font-size: 19px;
+        }
+
+        .testimonial-author h4 {
+            margin: 0 0 4px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .testimonial-author span {
+            color: #8a857c;
+            font-size: 10.5px;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+        }
+
+        .testimonial-controls {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 38px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-btn {
+            display: grid;
+            place-items: center;
+            width: 46px;
+            height: 46px;
+            color: #171717;
+            background: transparent;
+            border: 1px solid #cfc6b6;
+            cursor: pointer;
+            transition: background .3s ease, color .3s ease, border-color .3s ease, transform .3s ease;
+        }
+
+        .testimonial-btn:hover {
+            color: #111;
+            background: var(--gold);
+            border-color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        .testimonial-dots {
+            display: flex;
+            gap: 8px;
+            margin-left: auto;
+        }
+
+        .testimonial-dot {
+            width: 26px;
+            height: 3px;
+            padding: 0;
+            background: #cfc6b6;
+            border: 0;
+            cursor: pointer;
+            transition: background .3s ease, width .3s ease;
+        }
+
+        .testimonial-dot.active {
+            width: 42px;
+            background: var(--gold);
+        }
+
+        /* SERVICES */
+        #services {
+            color: #2e2d2a;
+            background: #f4f0e9;
+        }
+
+        .services-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 35px;
+            margin-bottom: 50px;
+        }
+
+        .services-intro {
+            max-width: 350px;
+            color: #aaa69e;
+            font-size: 12px;
+            line-height: 2;
+        }
+
+        .services-list {
+            border-top: 1px solid #3a3936;
+        }
+
+        .service-row {
+            position: relative;
+            display: grid;
+            grid-template-columns: 60px 1fr 35px;
+            align-items: center;
+            gap: 20px;
+            padding: 27px 0;
+            overflow: hidden;
+            border-bottom: 1px solid #3a3936;
+            transition: padding .35s ease, background .35s ease;
+        }
+
+        .service-row::before {
+            position: absolute;
+            inset: 0 auto 0 0;
+            width: 0;
+            background: #2e2d2a;
+            content: "";
+            transition: width .45s ease;
+        }
+
+        .service-row:hover {
+            padding-left: 12px;
+        }
+
+        .service-row:hover::before {
+            width: 100%;
+        }
+
+        .service-number {
+            z-index: 1;
+            color: var(--gold);
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        .service-name {
+            z-index: 1;
+            font-family: "Bodoni Moda", serif;
+            font-size: clamp(24px, 3.3vw, 42px);
+            font-weight: 400;
+            transition: color .3s ease, transform .3s ease;
+        }
+
+        .service-row:hover .service-name {
+            color: var(--gold);
+            transform: translateX(4px);
+        }
+
+        .service-arrow {
+            z-index: 1;
+            justify-self: end;
+            color: var(--gold);
+            transition: transform .3s ease;
+        }
+
+        .service-row:hover .service-arrow {
+            transform: translate(4px, -4px);
+        }
+
+        #servicePreview {
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            width: 235px;
+            height: 295px;
+            overflow: hidden;
+            pointer-events: none;
+            opacity: 0;
+            transform: scale(.94) rotate(-2deg);
+            border: 1px solid rgba(199, 165, 107, .8);
+            background: #222;
+            transition: opacity .2s ease, transform .2s ease;
+        }
+
+        #servicePreview.visible {
+            opacity: 1;
+            transform: scale(1) rotate(0);
+        }
+
+        #servicePreview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .service-preview-label {
+            position: absolute;
+            inset: auto 0 0;
+            padding: 35px 14px 15px;
+            color: white;
+            font-size: 9px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: linear-gradient(transparent, rgba(0, 0, 0, .85));
+        }
+
+        /* STATS */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding: 50px 8%;
+            background: #e9e3d8;
+        }
+
+        .stat {
+            padding: 18px 12px;
+            text-align: center;
+            border-right: 1px solid #d0c7b8;
+        }
+
+        .stat:last-child {
+            border-right: 0;
+        }
+
+        .stat strong {
+            display: block;
+            font-family: "Bodoni Moda", serif;
+            font-size: clamp(35px, 4.3vw, 55px);
+            font-weight: 400;
+        }
+
+        .stat span {
+            display: block;
+            margin-top: 8px;
+            color: #70695f;
+            font-size: 9px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* GALLERY — BEFORE / AFTER HOVER */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr .8fr;
+            grid-template-rows: 250px 250px;
+            gap: 15px;
+            margin-top: 45px;
+        }
+
+        .gallery-item {
+            position: relative;
+            display: block;
+            overflow: hidden;
+            background: #ddd;
+            cursor: pointer;
+        }
+
+        .gallery-item:first-child {
+            grid-row: span 2;
+        }
+
+        .gallery-item .gallery-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .8s cubic-bezier(.2, .7, .2, 1), opacity .5s ease, filter .5s ease;
+        }
+
+        .gallery-item .gallery-img.after {
+            opacity: 0;
+            filter: brightness(1.02);
+        }
+
+        .gallery-item:hover .gallery-img.before {
+            opacity: 0;
+            transform: scale(1.06);
+        }
+
+        .gallery-item:hover .gallery-img.after {
+            opacity: 1;
+            transform: scale(1.06);
+        }
+
+        .gallery-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            z-index: 3;
+            padding: 6px 12px;
+            color: #111;
+            background: var(--gold);
+            font-size: 8px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            pointer-events: none;
+            transition: opacity .35s ease, transform .35s ease;
+        }
+
+        .gallery-badge.after-badge {
+            opacity: 0;
+            transform: translateY(-6px);
+            background: #ffffff;
+        }
+
+        .gallery-item:hover .gallery-badge.before-badge {
+            opacity: 0;
+            transform: translateY(6px);
+        }
+
+        .gallery-item:hover .gallery-badge.after-badge {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            inset: auto 0 0;
+            z-index: 2;
+            padding: 40px 20px 18px;
+            color: white;
+            font-family: "Bodoni Moda", serif;
+            font-size: 22px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, .8));
+            transition: padding .3s ease;
+            pointer-events: none;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            padding-bottom: 25px;
+        }
+
+        .gallery-hint {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 14px;
+            color: #111;
+            background: rgba(255, 255, 255, .92);
+            font-size: 9px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            border-radius: 30px;
+            transform: translate(-50%, -50%) scale(.9);
+            opacity: 0;
+            transition: opacity .35s ease, transform .35s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .gallery-hint i {
+            color: #a7854c;
+            font-size: 11px;
+        }
+
+        .gallery-item:hover .gallery-hint {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* CTA */
+        .cta-section {
+            position: relative;
+            overflow: hidden;
+            padding: 110px 8%;
+            color: white;
+            text-align: center;
+            background:
+                linear-gradient(rgba(10, 10, 10, .77), rgba(10, 10, 10, .83)),
+                url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2000&q=85") center/cover fixed;
+        }
+
+        .cta-section .section-title {
+            max-width: 800px;
+            margin: 18px auto 0;
+        }
+
+        .cta-section p {
+            color: #c5c2bc;
+        }
+
+        /* BOOKING + CONTACT DETAILS */
+        .booking-grid {
+            display: grid;
+            grid-template-columns: .9fr 1.1fr;
+            align-items: start;
+            gap: 60px;
+        }
+
+        .booking-info {
+            padding: 10px 0;
+        }
+
+        .booking-info .section-title {
+            max-width: 480px;
+        }
+
+        .booking-info .section-copy {
+            max-width: 460px;
+        }
+
+        /* Quick contact strip */
+        .quick-contact-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 38px;
+        }
+
+        .quick-contact-card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+            padding: 20px 18px;
+            background: white;
+            border: 1px solid #e8e1d5;
+            transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quick-contact-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .4s ease;
+        }
+
+        .quick-contact-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(199, 165, 107, .5);
+            box-shadow: 0 12px 30px rgba(40, 30, 15, .07);
+        }
+
+        .quick-contact-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .quick-contact-icon {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            margin-bottom: 6px;
+            color: var(--gold);
+            border: 1px solid rgba(199, 165, 107, .35);
+            font-size: 15px;
+            transition: background .3s ease, color .3s ease;
+        }
+
+        .quick-contact-card:hover .quick-contact-icon {
+            background: var(--gold);
+            color: #111;
+        }
+
+        .quick-contact-card strong {
+            font-size: 10px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #8a857c;
+        }
+
+        .quick-contact-card span {
+            font-size: 12px;
+            font-weight: 500;
+            color: #171717;
+            overflow-wrap: anywhere;
+        }
+
+        .quick-contact-card.whatsapp .quick-contact-icon {
+            color: #1fa855;
+            border-color: rgba(31, 168, 85, .35);
+        }
+
+        .quick-contact-card.whatsapp:hover .quick-contact-icon {
+            background: #1fa855;
+            color: white;
+        }
+
+        .booking-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            padding: 32px;
+            background: white;
+            border: 1px solid #e8e1d5;
+            box-shadow: 0 15px 45px rgba(40, 30, 15, .035);
+            transition: box-shadow .4s ease, transform .4s ease;
+        }
+
+        .booking-form:hover {
+            box-shadow: 0 22px 55px rgba(40, 30, 15, .075);
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        .field label {
+            color: #5f5b54;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            padding: 14px;
+            color: #171717;
+            background: #fbfaf8;
+            border: 1px solid #ddd7cd;
+            border-radius: 0;
+            outline: none;
+            font-size: 12px;
+            transition: border-color .25s ease, box-shadow .25s ease;
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(199, 165, 107, .12);
+        }
+
+        .field textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* ADVANCED MAP CARD SECTION */
+        .map-card-section {
+            position: relative;
+            padding: 100px 8% 110px;
+            background: linear-gradient(160deg, #f4f0e9 0%, #e8e1d4 100%);
+            overflow: hidden;
+        }
+
+        .map-card-section::before {
+            content: "";
+            position: absolute;
+            top: -15%;
+            left: -10%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(199, 165, 107, .13) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .map-card-section::after {
+            content: "";
+            position: absolute;
+            bottom: -20%;
+            right: -8%;
+            width: 380px;
+            height: 380px;
+            background: radial-gradient(circle, rgba(199, 165, 107, .1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .map-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 30px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .map-card-intro {
+            max-width: 380px;
+            color: #6d6962;
+            font-size: 12.5px;
+            line-height: 2;
+        }
+
+        .map-card {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            background: white;
+            border: 1px solid rgba(199, 165, 107, .35);
+            box-shadow: 0 30px 80px rgba(40, 30, 15, .12);
+            overflow: hidden;
+            transition: box-shadow .5s ease, transform .5s ease;
+        }
+
+        .map-card:hover {
+            box-shadow: 0 40px 100px rgba(40, 30, 15, .18);
+            transform: translateY(-4px);
+        }
+
+        .map-info-panel {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 50px 44px;
+            background: #101010;
+            color: white;
+            overflow: hidden;
+        }
+
+        .map-info-panel::before {
+            content: "";
+            position: absolute;
+            top: -40%;
+            right: -30%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(199, 165, 107, .18) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .map-info-panel .section-kicker {
+            color: var(--gold);
+            position: relative;
+            z-index: 1;
+        }
+
+        .map-info-title {
+            margin: 14px 0 0;
+            font-family: "Bodoni Moda", serif;
+            font-size: clamp(28px, 3vw, 40px);
+            font-weight: 400;
+            line-height: 1.2;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .map-info-list {
+            display: grid;
+            gap: 22px;
+            margin: 32px 0 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .map-info-item {
+            display: grid;
+            grid-template-columns: 40px 1fr;
+            gap: 16px;
+        }
+
+        .map-info-item i {
+            margin-top: 3px;
+            color: var(--gold);
+            font-size: 17px;
+        }
+
+        .map-info-item strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #ffffff;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .map-info-item span,
+        .map-info-item a {
+            color: #aaa69e;
+            font-size: 12.5px;
+            line-height: 1.9;
+            overflow-wrap: anywhere;
+            transition: color .25s ease;
+        }
+
+        .map-info-item a:hover {
+            color: var(--gold);
+        }
+
+        .map-info-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 34px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .map-btn-gold,
+        .map-btn-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            min-height: 46px;
+            padding: 0 20px;
+            font-size: 9px;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+            transition: background .3s ease, color .3s ease, border-color .3s ease, transform .3s ease;
+        }
+
+        .map-btn-gold {
+            color: #111;
+            background: var(--gold);
+            border: 1px solid var(--gold);
+        }
+
+        .map-btn-gold:hover {
+            background: #e4c995;
+            border-color: #e4c995;
+            transform: translateY(-3px);
+        }
+
+        .map-btn-outline {
+            color: white;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, .35);
+        }
+
+        .map-btn-outline:hover {
+            color: var(--gold);
+            border-color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        .map-frame-wrap {
+            position: relative;
+            min-height: 460px;
+            background: #e8e4dc;
+        }
+
+        .map-frame-wrap iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: grayscale(.9);
+            transition: filter .6s ease;
+        }
+
+        .map-card:hover .map-frame-wrap iframe {
+            filter: grayscale(0);
+        }
+
+        .map-card-corner {
+            position: absolute;
+            z-index: 2;
+            width: 26px;
+            height: 26px;
+            pointer-events: none;
+        }
+
+        .map-card-corner.tl {
+            top: 12px;
+            left: 12px;
+            border-top: 2px solid var(--gold);
+            border-left: 2px solid var(--gold);
+        }
+
+        .map-card-corner.br {
+            bottom: 12px;
+            right: 12px;
+            border-bottom: 2px solid var(--gold);
+            border-right: 2px solid var(--gold);
+        }
+
+        .map-live-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 3;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            color: #111;
+            background: rgba(255, 255, 255, .95);
+            font-size: 9px;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            font-weight: 600;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, .12);
+            pointer-events: none;
+        }
+
+        .map-live-dot {
+            width: 7px;
+            height: 7px;
+            background: #1fa855;
+            border-radius: 50%;
+            animation: livePulse 1.8s infinite;
+        }
+
+        @keyframes livePulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(31, 168, 85, .5);
+            }
+
+            50% {
+                box-shadow: 0 0 0 7px rgba(31, 168, 85, 0);
+            }
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 70px 8% 25px;
+            color: white;
+            background: #101010;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 55px;
+        }
+
+        .footer-heading {
+            margin-bottom: 20px;
+            color: var(--gold);
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .footer-text {
+            max-width: 290px;
+            color: #aaa7a0;
+            font-size: 12px;
+            line-height: 1.9;
+        }
+
+        .footer-links {
+            display: grid;
+            gap: 13px;
+        }
+
+        .footer-links a {
+            width: fit-content;
+            color: #aaa7a0;
+            font-size: 12px;
+            transition: color .25s ease, transform .25s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            transform: translateX(4px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .social-links a {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            color: white;
+            border-radius: 50%;
+            border: 1px solid #444;
+            transition: background .3s ease, color .3s ease, transform .3s ease;
+        }
+
+        .social-links a:hover {
+            color: #111;
+            background: var(--gold);
+            border-color: var(--gold);
+            transform: translateY(-4px);
+        }
+
+        .brand-footer-logo {
+            width: 320px;
+            /* The wordmark needs to be wider */
+            height: auto;
+            object-fit: contain;
+            mix-blend-mode: screen;
+            /* Removes the white background */
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding-top: 22px;
+            color: #8c8983;
+            border-top: 1px solid #333;
+            font-size: 12px;
+        }
+
+        .footer-legal-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-legal-links a {
+            color: #8c8983;
+            transition: color 0.3s ease;
+        }
+
+        .footer-legal-links a:hover {
+            color: var(--gold);
+        }
+
+        .legal-separator {
+            font-size: 8px;
+            color: #555;
+        }
+
+        /* PROFESSIONAL NEWSLETTER FORM */
+        .newsletter-form {
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .newsletter-input-group {
+            display: flex;
+            align-items: center;
+            background: #1c1c1c;
+            border: 1px solid #333;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .newsletter-input-group:focus-within {
+            border-color: var(--gold);
+            box-shadow: 0 0 15px rgba(199, 165, 107, 0.15);
+        }
+
+        .newsletter-input-group input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            padding: 14px 16px;
+            color: #fff;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            outline: none;
+        }
+
+        .newsletter-input-group input::placeholder {
+            color: #777;
+        }
+
+        .newsletter-input-group button {
+            display: grid;
+            place-items: center;
+            background: transparent;
+            border: none;
+            color: var(--gold);
+            padding: 0 16px;
+            height: 100%;
+            cursor: pointer;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .newsletter-input-group button:hover {
+            transform: translateX(3px);
+            color: #fff;
+        }
+
+        .newsletter-success {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1c1c1c;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(5px);
+            transition: all 0.4s ease;
+            z-index: 2;
+        }
+
+        /* Triggered via JS */
+        .newsletter-form.success .newsletter-success {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .newsletter-form.success .newsletter-input-group {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Contact mini styling */
+        .footer-contact-mini {
+            border-top: 1px solid #2a2a2a;
+        }
+
+        .footer-contact-mini i {
+            width: 16px;
+            text-align: center;
+        }
+
+        /* =========================================
+           RESPONSIVE NEWSLETTER & FOOTER CONTACT
+           ========================================= */
+
+        /* TABLET & MOBILE (Up to 1100px) */
+        @media (max-width: 1100px) {
+            .newsletter-input-group input {
+                padding: 12px 14px;
+                font-size: 10.5px;
+            }
+
+            .newsletter-input-group button {
+                padding: 0 14px;
+            }
+
+            .newsletter-success {
+                font-size: 10.5px;
+                gap: 6px;
+            }
+
+            .footer-contact-mini {
+                margin-top: 20px;
+                padding-top: 20px;
+            }
+        }
+
+        /* SMALL MOBILE (Up to 760px) */
+        @media (max-width: 760px) {
+
+            /* Make the form fill the full width of its grid column */
+            .newsletter-form {
+                width: 100%;
+                max-width: 100%;
+                margin-bottom: 15px;
+            }
+
+            /* Slightly larger touch targets for mobile usability */
+            .newsletter-input-group input {
+                padding: 14px 16px;
+                font-size: 12px;
+            }
+
+            .newsletter-input-group button {
+                padding: 0 18px;
+                font-size: 14px;
+            }
+
+            .newsletter-success {
+                font-size: 11.5px;
+                padding: 0 10px;
+                text-align: center;
+            }
+
+            /* Adjust contact details text spacing */
+            .footer-contact-mini .footer-text {
+                font-size: 12.5px;
+                line-height: 1.6;
+            }
+
+            .footer-contact-mini a {
+                font-size: 13px;
+                font-weight: 500;
+            }
+
+            /* Fix the inline margin hack from the HTML for cleaner mobile wrapping */
+            .footer-contact-mini span[style*="margin-left"] {
+                margin-left: 0 !important;
+                display: block;
+                padding-left: 24px;
+                /* Aligns the second line under the text, not the icon */
+            }
+        }
+
+        /* EXTRA SMALL MOBILE (Up to 390px) */
+        @media (max-width: 390px) {
+            .newsletter-input-group input {
+                padding: 12px 12px;
+                font-size: 11px;
+            }
+
+            .newsletter-input-group button {
+                padding: 0 14px;
+            }
+
+            .newsletter-success {
+                font-size: 10px;
+                letter-spacing: 0;
+            }
+        }
+
+        /* WHATSAPP FLOAT */
+        .whatsapp-float {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 900;
+            display: grid;
+            place-items: center;
+            width: 54px;
+            height: 54px;
+            color: white;
+            background: #1fa855;
+            border-radius: 50%;
+            font-size: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .2);
+            animation: floatButton 3s ease-in-out infinite;
+            transition: transform .25s ease, background .25s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.08);
+            background: #168c45;
+        }
+
+        /* BACK TO TOP BUTTON */
+        #backToTop {
+            position: fixed;
+            right: 32px;
+            bottom: 90px;
+            /* Sits above the WhatsApp button */
+            z-index: 900;
+            display: grid;
+            place-items: center;
+            width: 44px;
+            height: 44px;
+            color: #ffffff;
+            background: #101010;
+            /* Black background */
+            border: 1px solid #333;
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: all 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Show state */
+        #backToTop.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Hover effect */
+        #backToTop:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: #111;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(199, 165, 107, 0.3);
+        }
+
+        /* Mobile adjustment */
+        @media (max-width: 760px) {
+            #backToTop {
+                right: 26px;
+                /* Aligns with WhatsApp float */
+                bottom: 86px;
+                width: 40px;
+                height: 40px;
+                font-size: 14px;
+            }
+        }
+
+        /* REVEAL ON SCROLL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(38px);
+            transition:
+                opacity .8s cubic-bezier(.2, .7, .2, 1),
+                transform .8s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .reveal.from-left {
+            transform: translateX(-45px);
+        }
+
+        .reveal.from-right {
+            transform: translateX(45px);
+        }
+
+        .reveal.zoom-in {
+            transform: scale(.94);
+        }
+
+        .reveal.in-view {
+            opacity: 1;
+            transform: translate(0, 0) scale(1);
+        }
+
+        .reveal-delay-1 {
+            transition-delay: .1s;
+        }
+
+        .reveal-delay-2 {
+            transition-delay: .2s;
+        }
+
+        .reveal-delay-3 {
+            transition-delay: .3s;
+        }
+
+        .reveal-delay-4 {
+            transition-delay: .4s;
+        }
+
+        /* KEYFRAMES */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(28px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes videoReveal {
+            from {
+                transform: scale(1.06);
+                opacity: .5;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes marquee {
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes arrowBounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(5px);
+            }
+        }
+
+        @keyframes floatButton {
+
+            0%,
+            100% {
+                box-shadow: 0 8px 25px rgba(0, 0, 0, .2);
+            }
+
+            50% {
+                box-shadow: 0 8px 30px rgba(31, 168, 85, .35);
+            }
+        }
+
+        /* TABLET */
+        @media (max-width: 1100px) {
+            .header-inner {
+                padding: 0 3%;
+                gap: 14px;
+            }
+
+            .desktop-nav {
+                gap: 13px;
+            }
+
+            .nav-link {
+                font-size: 9px;
+                letter-spacing: .8px;
+            }
+
+            .header-action {
+                padding: 12px;
+                font-size: 8px;
+            }
+
+            .brand-name {
+                font-size: 21px;
+            }
+
+            .brand-sub {
+                letter-spacing: 2px;
+            }
+
+            .section {
+                padding: 90px 6%;
+            }
+
+            .hero-content {
+                padding-left: 6%;
+            }
+
+            .hero-bottom {
+                left: 6%;
+                right: 6%;
+            }
+
+            .booking-grid {
+                gap: 35px;
+            }
+
+            .booking-form {
+                padding: 24px;
+            }
+
+            .footer-top {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .ceo-grid {
+                gap: 6%;
+            }
+
+            .ceo-image {
+                height: 440px;
+            }
+
+            .why-features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .testimonial-card {
+                flex: 0 0 calc(50% - 13px);
+                padding: 34px 30px 28px;
+            }
+
+            .map-card {
+                grid-template-columns: 1fr;
+            }
+
+            .map-frame-wrap {
+                min-height: 380px;
+                order: -1;
+            }
+
+            .map-info-panel {
+                padding: 44px 36px;
+            }
+        }
+
+        /* MOBILE */
+        @media (max-width: 760px) {
+            html {
+                scroll-padding-top: 74px;
+            }
+
+            .header-inner {
+                display: flex;
+                justify-content: space-between;
+                height: 74px;
+                padding: 0 5%;
+            }
+
+            .desktop-nav,
+            .header-action {
+                display: none;
+            }
+
+            #menuToggle {
+                display: block;
+                flex-shrink: 0;
+            }
+
+            .brand-name {
+                font-size: 22px;
+            }
+
+            .brand-sub {
+                font-size: 7px;
+            }
+
+            .hero {
+                height: 92svh;
+                min-height: 700px;
+                max-height: 900px;
+            }
+
+            #heroVideo {
+                object-position: 60% center;
+            }
+
+            .hero-overlay {
+                background:
+                    linear-gradient(90deg, rgba(7, 7, 7, .83), rgba(7, 7, 7, .43)),
+                    linear-gradient(0deg, rgba(0, 0, 0, .5), transparent 55%);
+            }
+
+            .hero-content {
+                padding: 115px 6% 90px;
+            }
+
+            .hero h1 {
+                font-size: clamp(45px, 12vw, 70px);
+                letter-spacing: -1.5px;
+            }
+
+            .hero-description {
+                max-width: 400px;
+                font-size: 12px;
+            }
+
+            .hero-bottom {
+                right: 6%;
+                bottom: 22px;
+                left: 6%;
+                font-size: 8px;
+            }
+
+            .hero-location {
+                display: none;
+            }
+
+            .btn-gold,
+            .btn-outline {
+                min-height: 48px;
+                padding: 0 15px;
+                font-size: 9px;
+            }
+
+            .section {
+                padding: 75px 6%;
+            }
+
+            .about-grid,
+            .why-grid,
+            .booking-grid {
+                grid-template-columns: 1fr;
+                gap: 38px;
+            }
+
+            .about-image-wrap {
+                min-height: 370px;
+            }
+
+            .about-image {
+                inset: 0 20px 20px 0;
+                width: calc(100% - 20px);
+                height: calc(100% - 20px);
+            }
+
+            .experience-card {
+                bottom: 35px;
+                padding: 15px 20px;
+            }
+
+            .experience-card strong {
+                font-size: 32px;
+            }
+
+            .services-heading {
+                display: block;
+                margin-bottom: 32px;
+            }
+
+            .services-intro {
+                margin-top: 18px;
+            }
+
+            .service-row {
+                grid-template-columns: 35px 1fr 25px;
+                gap: 12px;
+                padding: 23px 0;
+            }
+
+            .service-name {
+                font-size: clamp(20px, 5.8vw, 30px);
+            }
+
+            #servicePreview {
+                display: none;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 25px 5%;
+            }
+
+            .stat {
+                padding: 22px 8px;
+            }
+
+            .stat:nth-child(2) {
+                border-right: 0;
+            }
+
+            .stat:nth-child(-n+2) {
+                border-bottom: 1px solid #d0c7b8;
+            }
+
+            .stat strong {
+                font-size: 36px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 250px 190px 190px;
+                gap: 10px;
+            }
+
+            .gallery-item:first-child {
+                grid-column: 1 / -1;
+                grid-row: auto;
+            }
+
+            .gallery-caption {
+                padding: 28px 12px 12px;
+                font-size: 17px;
+            }
+
+            .gallery-hint {
+                font-size: 8px;
+                padding: 7px 11px;
+            }
+
+            .cta-section {
+                padding: 80px 6%;
+                background-attachment: scroll;
+            }
+
+            .booking-form {
+                grid-template-columns: 1fr;
+                padding: 22px;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+
+            /* Footer Mobile Layout */
+            footer {
+                padding: 55px 6% 22px;
+            }
+
+            .footer-top {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                /* Creates two columns */
+                gap: 40px 20px;
+            }
+
+            /* Brand section spans full width at the top */
+            .footer-top>div:first-child {
+                grid-column: 1 / -1;
+            }
+
+            /* Target the 'Explore' and 'Our Services' columns */
+            .footer-top>div:nth-child(2),
+            .footer-top>div:nth-child(3) {
+                grid-column: span 1;
+                /* Keeps them side-by-side */
+            }
+
+            /* Target the 'Find Us' column to span full width below */
+            .footer-top>div:nth-child(4) {
+                grid-column: 1 / -1;
+            }
+
+            .brand-footer-logo {
+                width: 180px;
+                /* Smaller wordmark for mobile */
+            }
+
+            .ceo-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .ceo-image {
+                height: 380px;
+                box-shadow: 14px 14px 0 0 var(--gold);
+            }
+
+            .ceo-quote {
+                font-size: 17px;
+            }
+
+            .why-features-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                margin-top: 36px;
+            }
+
+            .why-feature-card {
+                padding: 30px 24px;
+            }
+
+            .why-feature-number {
+                font-size: 38px;
+            }
+
+            .testimonials-header {
+                display: block;
+                margin-bottom: 32px;
+            }
+
+            .testimonials-intro {
+                margin-top: 16px;
+            }
+
+            .testimonial-track {
+                gap: 16px;
+            }
+
+            .testimonial-card {
+                flex: 0 0 100%;
+                padding: 30px 24px 26px;
+            }
+
+            .testimonial-text {
+                font-size: 16px;
+            }
+
+            .testimonial-dots {
+                display: none;
+            }
+
+            .testimonial-controls {
+                justify-content: flex-start;
+            }
+
+            /* Quick contact strip mobile */
+            .quick-contact-strip {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            /* Map card mobile */
+            .map-card-section {
+                padding: 70px 5% 80px;
+            }
+
+            .map-card-header {
+                display: block;
+                margin-bottom: 28px;
+            }
+
+            .map-card-intro {
+                margin-top: 14px;
+            }
+
+            .map-info-panel {
+                padding: 34px 26px;
+            }
+
+            .map-frame-wrap {
+                min-height: 300px;
+            }
+
+            .map-info-actions {
+                flex-direction: column;
+            }
+
+            .map-btn-gold,
+            .map-btn-outline {
+                width: 100%;
+            }
+
+            .map-live-badge {
+                top: 14px;
+                right: 14px;
+                font-size: 8px;
+                padding: 6px 11px;
+            }
+
+            .map-card-corner {
+                width: 18px;
+                height: 18px;
+            }
+
+            .map-card-corner.tl {
+                top: 8px;
+                left: 8px;
+            }
+
+            .map-card-corner.br {
+                bottom: 8px;
+                right: 8px;
+            }
+        }
+
+        @media (max-width: 390px) {
+            .brand-name {
+                font-size: 19px;
+                letter-spacing: 1px;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+            }
+
+            .hero-actions {
+                gap: 9px;
+            }
+
+            .btn-gold,
+            .btn-outline {
+                padding: 0 11px;
+                font-size: 8px;
+            }
+
+            /* Footer Mobile Layout */
+            footer {
+                padding: 55px 6% 22px;
+            }
+
+            .footer-top {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                /* Creates two columns */
+                gap: 40px 20px;
+            }
+
+            /* Brand section spans full width at the top */
+            .footer-top>div:first-child {
+                grid-column: 1 / -1;
+            }
+
+            /* Target the 'Explore' and 'Our Services' columns */
+            .footer-top>div:nth-child(2),
+            .footer-top>div:nth-child(3) {
+                grid-column: span 1;
+                /* Keeps them side-by-side */
+            }
+
+            /* Target the 'Find Us' column to span full width below */
+            .footer-top>div:nth-child(4) {
+                grid-column: 1 / -1;
+            }
+        }
+
+        /* ACCESSIBILITY: HONOUR REDUCED-MOTION PREFERENCE */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+
+    <!-- Force page to start at top on reload / hash entry -->
+    <script>
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        // Strip hash immediately so browser doesn't jump on load
+        if (window.location.hash) {
+            history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
+        // Force top before paint
+        window.scrollTo(0, 0);
+    </script>
+</head>
+
+<body>
+    <div id="scrollProgress"></div>
+
+    <!-- HEADER -->
+    <header id="siteHeader">
+        <div class="header-inner">
+
+            <a href="#home" class="brand" aria-label="FastTracks home">
+                <!-- Add your logo image path here -->
+                <img src="fasttracks_icon.png" alt="FastTracks Logo" class="brand-logo">
+                <div class="brand-text">
+                    <span class="brand-name">FASTTRACKS</span>
+                    <span class="brand-sub">CAR CARE</span>
+                </div>
+            </a>
+
+            <nav class="desktop-nav" aria-label="Main navigation">
+                <a class="nav-link" href="#home">Home</a>
+                <a class="nav-link" href="#about">About</a>
+                <a class="nav-link" href="#ceo">CEO</a>
+                <a class="nav-link" href="#services">Services</a>
+                <a class="nav-link" href="#why-us">Why Us</a>
+                <a class="nav-link" href="#testimonials">Testimonials</a>
+                <a class="nav-link" href="#gallery">Gallery</a>
+                <a class="nav-link" href="#booking">Booking</a>
+            </nav>
+
+            <a href="#booking" class="header-action">
+                Book a Visit <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+
+            <button id="menuToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <nav id="mobileMenu" aria-label="Mobile navigation">
+            <a class="mobile-link" href="#home">Home</a>
+            <a class="mobile-link" href="#about">About Us</a>
+            <a class="mobile-link" href="#ceo">Our CEO</a>
+            <a class="mobile-link" href="#services">Our Services</a>
+            <a class="mobile-link" href="#why-us">Why FastTracks</a>
+            <a class="mobile-link" href="#testimonials">Testimonials</a>
+            <a class="mobile-link" href="#gallery">Gallery</a>
+            <a class="mobile-link" href="#booking">Booking & Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero" id="home">
+            <div class="hero-fallback" aria-hidden="true"></div>
+
+            <video id="heroVideo" autoplay loop muted playsinline preload="auto"
+                poster="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=2200&q=85"
+                aria-hidden="true">
+                <!-- Reliable cinematic car video -->
+                <source src="https://cdn.coverr.co/videos/coverr-a-luxury-sports-car-in-a-dark-room-1573/1080p.mp4"
+                    type="video/mp4">
+            </video>
+
+            <div class="hero-overlay"></div>
+
+            <div class="hero-content">
+                <div class="eyebrow">The art of automotive perfection</div>
+
+                <h1 class="display">
+                    Beyond<br>
+                    <em>Ordinary.</em><br>
+                    Beyond Limits.
+                </h1>
+
+                <p class="hero-description">
+                    Experience automotive craftsmanship at its finest.
+                    From bespoke interiors to advanced paint protection,
+                    every detail is perfected around your vehicle.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#services" class="btn-gold">
+                        Discover Our Services <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#about" class="btn-outline">
+                        Our Story <i class="fa-solid fa-arrow-down"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-bottom">
+                <span class="hero-location">Jubilee Hills · Hyderabad</span>
+                <span class="scroll-indicator">Scroll to explore <i class="fa-solid fa-arrow-down"></i></span>
+                <span>Precision. Passion. Perfection.</span>
+            </div>
+        </section>
+
+        <!-- MARQUEE -->
+        <div class="marquee">
+            <div class="marquee-track">
+                <div class="marquee-item">Luxury Modifications <i class="fa-solid fa-star"></i></div>
+                <div class="marquee-item">Paint Protection Film <i class="fa-solid fa-star"></i></div>
+                <div class="marquee-item">Ceramic Coating <i class="fa-solid fa-star"></i></div>
+                <div class="marquee-item">Bespoke Interiors <i class="fa-solid fa-star"></i></div>
+                <div class="marquee-item">Precision Detailing <i class="fa-solid fa-star"></i></div>
+                <div class="marquee-item">Luxury Modifications <i class="fa-solid fa-star"></i></div>
+                <div class="marquee-item">Paint Protection Film <i class="fa-solid fa-star"></i></div>
+                <div class="marquee-item">Ceramic Coating <i class="fa-solid fa-star"></i></div>
+                <div class="marquee-item">Bespoke Interiors <i class="fa-solid fa-star"></i></div>
+                <div class="marquee-item">Precision Detailing <i class="fa-solid fa-star"></i></div>
+            </div>
+        </div>
+
+        <!-- ABOUT -->
+        <section class="section" id="about">
+            <div class="about-grid">
+
+                <div class="about-image-wrap reveal from-left">
+                    <img class="about-image"
+                        src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1100&q=85"
+                        alt="Luxury sports car" loading="lazy">
+                    <div class="about-image-accent"></div>
+                    <div class="experience-card">
+                        <strong>25+</strong>
+                        <span>Years of experience</span>
+                    </div>
+                </div>
+
+                <div class="reveal from-right">
+                    <div class="section-kicker">Welcome to FastTracks</div>
+                    <h2 class="section-title">Where every detail tells a story.</h2>
+
+                    <p class="section-copy mt-6">
+                        At FastTracks Car Care, automotive care is more than a service.
+                        It is a commitment to craftsmanship, precision and individuality.
+                    </p>
+
+                    <p class="section-copy mt-4">
+                        Founded by Rakesh Kurapati, our studio brings together years of
+                        experience and a passion for transforming vehicles into something
+                        truly personal.
+                    </p>
+
+                    <p class="section-copy mt-4">
+                        From sophisticated interior upgrades to advanced exterior
+                        protection, our team works to make every visit exceptional.
+                    </p>
+
+                    <a href="#booking" class="btn-gold mt-7">
+                        Visit Our Studio <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS (Moved here) -->
+        <section class="stats" aria-label="FastTracks highlights">
+            <div class="stat reveal">
+                <strong class="counter" data-target="25" data-suffix="+">0</strong>
+                <span>Years of experience</span>
+            </div>
+            <div class="stat reveal reveal-delay-1">
+                <strong class="counter" data-target="360" data-suffix="°">0</strong>
+                <span>Vehicle care</span>
+            </div>
+            <div class="stat reveal reveal-delay-2">
+                <strong>1:1</strong>
+                <span>Personal attention</span>
+            </div>
+            <div class="stat reveal reveal-delay-3">
+                <strong>100%</strong>
+                <span>Detail focused</span>
+            </div>
+        </section>
+
+
+        <!-- CEO SECTION -->
+        <section class="ceo-section" id="ceo">
+            <div class="ceo-grid">
+                <div class="ceo-image-wrap reveal from-left">
+                    <!-- CEO Image Carousel -->
+                    <div class="ceo-slider">
+                        <img class="ceo-image active" src="ceo3.jpeg" alt="Rakesh Kurapati - Photo 1" loading="lazy">
+                        <img class="ceo-image" src="ceo1.jpeg" alt="Rakesh Kurapati - Photo 2" loading="lazy">
+                        <img class="ceo-image" src="ceo2.jpeg" alt="Rakesh Kurapati - Photo 3" loading="lazy">
+                    </div>
+                </div>
+
+                <div class="ceo-content reveal from-right">
+                    <div class="section-kicker">The Visionary Behind FastTracks</div>
+                    <h2 class="section-title">Rakesh Kurapati</h2>
+                    <span class="ceo-role">Founder &amp; CEO</span>
+
+                    <div class="ceo-quote">
+                        <i class="fa-solid fa-quote-left"></i>
+                        A car is never just a machine — it's an extension of who you are.
+                        My mission is to make sure it reflects exactly that.
+                    </div>
+
+                    <p class="section-copy">
+                        With over two decades of hands-on experience in the automotive
+                        industry, Rakesh Kurapati founded FastTracks Car Care with a singular
+                        vision: to bring world-class automotive customisation and detailing
+                        to Hyderabad without compromise.
+                    </p>
+
+                    <p class="section-copy mt-4">
+                        His philosophy is rooted in precision, patience and personalisation.
+                        Every vehicle that enters the studio is treated as a unique canvas,
+                        and every client becomes part of the FastTracks family.
+                    </p>
+
+                    <p class="section-copy mt-4">
+                        Under his leadership, FastTracks has grown into a destination for
+                        enthusiasts who demand nothing short of perfection.
+                    </p>
+
+                    <div class="ceo-signature">Rakesh Kurapati</div>
+
+                    <a href="#booking" class="btn-gold mt-5">
+                        Meet Us In Person <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY FASTTRACKS (ADVANCED) -->
+        <section class="section why-advanced" id="why-us">
+            <div class="reveal">
+                <div class="section-kicker">The FastTracks difference</div>
+                <h2 class="section-title">Why discerning owners choose us.</h2>
+                <p class="section-copy mt-5 max-w-2xl">
+                    Every project is guided by a simple belief: excellence lives in the
+                    details others overlook. From the products we use to the hands that
+                    apply them, nothing is left to chance.
+                </p>
+            </div>
+
+            <div class="why-features-grid">
+                <div class="why-feature-card reveal reveal-delay-1">
+                    <span class="why-feature-number">01</span>
+                    <div class="why-feature-icon"><i class="fa-solid fa-gem"></i></div>
+                    <h3>Premium Materials</h3>
+                    <p>We source only the finest films, coatings and interior materials from
+                        trusted global brands — because lasting results begin with what goes on
+                        your vehicle.</p>
+                </div>
+
+                <div class="why-feature-card reveal reveal-delay-2">
+                    <span class="why-feature-number">02</span>
+                    <div class="why-feature-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                    <h3>Master Craftsmanship</h3>
+                    <p>Our technicians are trained specialists. Each panel, stitch and finish
+                        is executed with the patience and precision of true craftspeople.</p>
+                </div>
+
+                <div class="why-feature-card reveal reveal-delay-3">
+                    <span class="why-feature-number">03</span>
+                    <div class="why-feature-icon"><i class="fa-solid fa-car"></i></div>
+                    <h3>Personalised Solutions</h3>
+                    <p>No two vehicles are the same. We listen, assess and tailor every
+                        recommendation to your car, your driving habits and your expectations.</p>
+                </div>
+
+                <div class="why-feature-card reveal reveal-delay-1">
+                    <span class="why-feature-number">04</span>
+                    <div class="why-feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>Protection That Lasts</h3>
+                    <p>From ceramic coatings to PPF, our protection solutions are engineered
+                        to preserve your vehicle's finish and value for years — not weeks.</p>
+                </div>
+
+                <div class="why-feature-card reveal reveal-delay-2">
+                    <span class="why-feature-number">05</span>
+                    <div class="why-feature-icon"><i class="fa-solid fa-microscope"></i></div>
+                    <h3>Detail-First Process</h3>
+                    <p>Every project follows a meticulous multi-stage process with quality
+                        checks at every step. We don't cut corners — we perfect them.</p>
+                </div>
+
+                <div class="why-feature-card reveal reveal-delay-3">
+                    <span class="why-feature-number">06</span>
+                    <div class="why-feature-icon"><i class="fa-solid fa-handshake"></i></div>
+                    <h3>Trusted Relationship</h3>
+                    <p>Our clients return for decades. We build long-term relationships based
+                        on transparency, honest advice and consistently exceptional results.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section class="section" id="services">
+            <div class="services-heading reveal">
+                <div>
+                    <div class="section-kicker">Crafted for your vehicle</div>
+                    <h2 class="section-title">Our Expertise</h2>
+                </div>
+
+                <p class="services-intro">
+                    Thoughtful upgrades, specialist treatments and meticulous detailing,
+                    all under one roof. Hover over a service to preview it.
+                </p>
+            </div>
+
+            <div class="services-list">
+
+                <a href="#booking" class="service-row reveal" data-title="Luxury Interior Customisation"
+                    data-image="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=900&q=85">
+                    <span class="service-number">01</span>
+                    <span class="service-name">Luxury Interior Customisation</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+                </a>
+
+                <a href="#booking" class="service-row reveal" data-title="Motorised Recliner Seats"
+                    data-image="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=900&q=85">
+                    <span class="service-number">02</span>
+                    <span class="service-name">Motorised Recliner Seats</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+                </a>
+
+                <a href="#booking" class="service-row reveal" data-title="Body Kit & Exterior Styling"
+                    data-image="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=85">
+                    <span class="service-number">03</span>
+                    <span class="service-name">Body Kit & Exterior Styling</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+                </a>
+
+                <a href="#booking" class="service-row reveal" data-title="Paint Protection Film"
+                    data-image="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=900&q=85">
+                    <span class="service-number">04</span>
+                    <span class="service-name">Paint Protection Film (PPF)</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+                </a>
+
+                <a href="#booking" class="service-row reveal" data-title="Ceramic & Graphene Coating"
+                    data-image="https://images.unsplash.com/photo-1632823471565-1ecdf5c6f5d5?auto=format&fit=crop&w=900&q=85">
+                    <span class="service-number">05</span>
+                    <span class="service-name">Ceramic & Graphene Coating</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+                </a>
+
+                <a href="#booking" class="service-row reveal" data-title="Paint Correction & Detailing"
+                    data-image="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=900&q=85">
+                    <span class="service-number">06</span>
+                    <span class="service-name">Paint Correction & Detailing</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+                </a>
+
+                <a href="#booking" class="service-row reveal" data-title="Deep Interior Cleaning"
+                    data-image="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=900&q=85">
+                    <span class="service-number">07</span>
+                    <span class="service-name">Deep Interior Cleaning & Steam Wash</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+                </a>
+
+                <a href="#booking" class="service-row reveal" data-title="Body Shop & Paint Booth"
+                    data-image="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=900&q=85">
+                    <span class="service-number">08</span>
+                    <span class="service-name">Body Shop & Paint Booth</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+                </a>
+
+                <a href="#booking" class="service-row reveal" data-title="Periodic Vehicle Servicing"
+                    data-image="https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=900&q=85">
+                    <span class="service-number">09</span>
+                    <span class="service-name">Periodic Vehicle Servicing</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- SERVICE HOVER PREVIEW -->
+        <div id="servicePreview" aria-hidden="true">
+            <img id="servicePreviewImage" src="" alt="">
+            <div id="servicePreviewLabel" class="service-preview-label"></div>
+        </div>
+
+        <!-- GALLERY — BEFORE / AFTER HOVER -->
+        <section class="section" id="gallery">
+            <div class="reveal">
+                <div class="section-kicker">A closer look</div>
+                <h2 class="section-title">Craftsmanship in focus.</h2>
+                <p class="section-copy mt-5 max-w-xl">
+                    Hover over any image to reveal the transformation. Each frame shows the
+                    before and after of our work — the difference is in the details.
+                </p>
+            </div>
+
+            <div class="gallery-grid">
+
+                <!-- 1: Big image — Before / After -->
+                <a class="gallery-item reveal zoom-in" href="#booking"
+                    aria-label="View before and after transformation">
+                    <img class="gallery-img before"
+                        src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=85"
+                        alt="Luxury sports car before detailing" loading="lazy">
+                    <img class="gallery-img after"
+                        src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=85"
+                        alt="Luxury sports car after detailing" loading="lazy">
+                    <span class="gallery-badge before-badge">Before</span>
+                    <span class="gallery-badge after-badge">After</span>
+
+                    <span class="gallery-caption">Luxury &amp; Styling</span>
+                </a>
+
+                <!-- 2: Before / After -->
+                <a class="gallery-item reveal zoom-in reveal-delay-1" href="#booking"
+                    aria-label="View before and after transformation">
+                    <img class="gallery-img before"
+                        src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=800&q=85"
+                        alt="Vehicle exterior before detailing" loading="lazy">
+                    <img class="gallery-img after"
+                        src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=85"
+                        alt="Vehicle exterior after detailing" loading="lazy">
+                    <span class="gallery-badge before-badge">Before</span>
+                    <span class="gallery-badge after-badge">After</span>
+
+                    <span class="gallery-caption">Exterior Care</span>
+                </a>
+
+                <!-- 3: Before / After -->
+                <a class="gallery-item reveal zoom-in reveal-delay-2" href="#booking"
+                    aria-label="View before and after transformation">
+                    <img class="gallery-img before"
+                        src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=85"
+                        alt="Car interior before detailing" loading="lazy">
+                    <img class="gallery-img after"
+                        src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=85"
+                        alt="Car interior after detailing" loading="lazy">
+                    <span class="gallery-badge before-badge">Before</span>
+                    <span class="gallery-badge after-badge">After</span>
+
+                    <span class="gallery-caption">Interior Comfort</span>
+                </a>
+
+                <!-- 4: Before / After -->
+                <a class="gallery-item reveal zoom-in" href="#booking"
+                    aria-label="View before and after transformation">
+                    <img class="gallery-img before"
+                        src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=85"
+                        alt="Automotive exterior before styling" loading="lazy">
+                    <img class="gallery-img after"
+                        src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=800&q=85"
+                        alt="Automotive exterior after styling" loading="lazy">
+                    <span class="gallery-badge before-badge">Before</span>
+                    <span class="gallery-badge after-badge">After</span>
+
+                    <span class="gallery-caption">Automotive Design</span>
+                </a>
+
+                <!-- 5: Before / After -->
+                <a class="gallery-item reveal zoom-in reveal-delay-1" href="#booking"
+                    aria-label="View before and after transformation">
+                    <img class="gallery-img before"
+                        src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=800&q=85"
+                        alt="Automotive workshop before restoration" loading="lazy">
+                    <img class="gallery-img after"
+                        src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=800&q=85"
+                        alt="Automotive workshop after restoration" loading="lazy">
+                    <span class="gallery-badge before-badge">Before</span>
+                    <span class="gallery-badge after-badge">After</span>
+
+                    <span class="gallery-caption">Workshop Precision</span>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- CALL TO ACTION -->
+        <section class="cta-section">
+            <div class="reveal">
+                <div class="section-kicker">Your vehicle, reimagined</div>
+                <h2 class="section-title display">
+                    Excellence isn't an option.<br>
+                    It's the standard.
+                </h2>
+                <p class="mt-6 mb-8 text-sm">
+                    Let's create something exceptional for your vehicle.
+                </p>
+                <a href="#booking" class="btn-gold">
+                    Book Your Consultation <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS (Moved here) -->
+        <section class="testimonials-section" id="testimonials">
+            <div class="testimonials-header reveal">
+                <div>
+                    <div class="section-kicker">Words from our clients</div>
+                    <h2 class="section-title">Driven by trust.</h2>
+                </div>
+                <p class="testimonials-intro">
+                    The true measure of our work is what our clients say after they drive
+                    away. Here's what a few of them shared.
+                </p>
+            </div>
+
+            <div class="testimonial-slider reveal">
+                <div class="testimonial-track" id="testimonialTrack">
+
+                    <article class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            I've had my cars detailed across the country, and FastTracks is
+                            genuinely in a different league. The ceramic coating on my GLE is
+                            flawless — six months on and it still looks like it left the showroom.
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">A</div>
+                            <div>
+                                <h4>Aditya Reddy</h4>
+                                <span>Mercedes GLE Owner</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            The interior customisation they did on my Defender is beyond
+                            anything I imagined. Nappa leather, custom stitching, a reupholstered
+                            dashboard — every detail was perfect. Worth every rupee.
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">S</div>
+                            <div>
+                                <h4>Shreya Nair</h4>
+                                <span>Land Rover Defender Owner</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            Rakesh personally walked me through the PPF options and didn't
+                            try to upsell me on anything unnecessary. The install is invisible
+                            and my car is finally protected the way it should be. A rare find.
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">K</div>
+                            <div>
+                                <h4>Karthik Menon</h4>
+                                <span>Porsche 911 Owner</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            From the moment I walked in, the team made me feel like family.
+                            They fixed paint defects on my 5 Series that I thought were
+                            permanent. The attention to detail here is genuinely world-class.
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">P</div>
+                            <div>
+                                <h4>Priya Sharma</h4>
+                                <span>BMW 5 Series Owner</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            I brought in my Fortuner for a full body kit and PPF. The team
+                            kept me updated throughout, finished ahead of schedule, and the
+                            quality of the work exceeded my expectations. Highly recommended.
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">V</div>
+                            <div>
+                                <h4>Vikram Singh</h4>
+                                <span>Toyota Fortuner Owner</span>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+
+            <div class="testimonial-controls reveal">
+                <button class="testimonial-btn" id="testimonialPrev" aria-label="Previous testimonials">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <button class="testimonial-btn" id="testimonialNext" aria-label="Next testimonials">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                <div class="testimonial-dots" id="testimonialDots"></div>
+            </div>
+        </section>
+
+        <!-- BOOKING + CONTACT DETAILS SIDE BY SIDE -->
+        <section class="section" id="booking">
+            <div class="booking-grid">
+
+                <div class="booking-info reveal from-left">
+                    <div class="section-kicker">Start Your Journey</div>
+                    <h2 class="section-title">Let's talk about your car.</h2>
+
+                    <p class="section-copy mt-6">
+                        Visit FastTracks Car Care in Jubilee Hills, Hyderabad, to discuss
+                        your vehicle's styling, protection and maintenance needs.
+                    </p>
+
+                    <!-- Quick contact strip: Call / Mail / WhatsApp ONLY -->
+                    <div class="quick-contact-strip">
+                        <a href="tel:+917352525252" class="quick-contact-card">
+                            <div class="quick-contact-icon"><i class="fa-solid fa-phone"></i></div>
+                            <strong>Call Us</strong>
+                            <span>+91 73525 25252</span>
+                        </a>
+
+                        <a href="mailto:hello@fasttrackscarcare.com" class="quick-contact-card">
+                            <div class="quick-contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                            <strong>Mail Us</strong>
+                            <span>hello@fasttrackscarcare.com</span>
+                        </a>
+
+                        <a href="https://wa.me/917352525252" target="_blank" rel="noopener noreferrer"
+                            class="quick-contact-card whatsapp">
+                            <div class="quick-contact-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                            <strong>WhatsApp</strong>
+                            <span>Message our team</span>
+                        </a>
+                    </div>
+
+                    <a href="https://www.google.com/maps/search/?api=1&query=FastTracks+Car+Care+Jubilee+Hills+Hyderabad"
+                        target="_blank" rel="noopener noreferrer" class="btn-gold mt-8">
+                        Get Directions <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+
+                <form class="booking-form reveal from-right" id="bookingForm">
+                    <div class="field">
+                        <label for="customerName">Full Name</label>
+                        <input id="customerName" name="name" type="text" placeholder="Your name" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="customerPhone">Phone Number</label>
+                        <input id="customerPhone" name="phone" type="tel" inputmode="tel" pattern="[0-9+() -]{8,20}"
+                            placeholder="Your phone number" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="carModel">Vehicle</label>
+                        <input id="carModel" name="vehicle" type="text" placeholder="Make and model" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="serviceSelect">Select Service</label>
+                        <select id="serviceSelect" name="service" required>
+                            <option value="">Choose a service</option>
+                            <option>Luxury Interior Customisation</option>
+                            <option>Motorised Recliner Seats</option>
+                            <option>Body Kit & Exterior Styling</option>
+                            <option>Paint Protection Film (PPF)</option>
+                            <option>Ceramic & Graphene Coating</option>
+                            <option>Paint Correction & Detailing</option>
+                            <option>Deep Interior Cleaning & Steam Wash</option>
+                            <option>Body Shop & Paint Booth</option>
+                            <option>Periodic Vehicle Servicing</option>
+                            <option>Other Enquiry</option>
+                        </select>
+                    </div>
+
+                    <div class="field full">
+                        <label for="visitDate">Preferred Visit Date</label>
+                        <input id="visitDate" name="date" type="date">
+                    </div>
+
+                    <div class="field full">
+                        <label for="customerMessage">Your Requirements</label>
+                        <textarea id="customerMessage" name="message"
+                            placeholder="Tell us about your vehicle and requirements"></textarea>
+                    </div>
+
+                    <div class="field full">
+                        <button class="btn-gold w-full cursor-pointer" type="submit">
+                            Send Enquiry on WhatsApp <i class="fa-brands fa-whatsapp"></i>
+                        </button>
+                        <p class="text-xs leading-6 text-stone-500">
+                            Your details will open in WhatsApp for you to review and send.
+                        </p>
+                    </div>
+                </form>
+
+            </div>
+        </section>
+
+        <!-- ADVANCED MAP CARD SECTION -->
+        <section class="map-card-section" id="location-map">
+            <div class="map-card-header reveal">
+                <div>
+                    <div class="section-kicker">Find us with ease</div>
+                    <h2 class="section-title">Visit the studio.</h2>
+                </div>
+                <p class="map-card-intro">
+                    Located in the heart of Jubilee Hills, our studio is easy to reach.
+                    Tap the map to open directions, or call us ahead to plan your visit.
+                </p>
+            </div>
+
+            <div class="map-card reveal">
+                <!-- Info panel -->
+                <div class="map-info-panel">
+                    <div class="section-kicker">FastTracks Car Care</div>
+                    <h3 class="map-info-title">Jubilee Hills Studio</h3>
+
+                    <div class="map-info-list">
+                        <div class="map-info-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div>
+                                <strong>Address</strong>
+                                <span>1355/F, Road No. 45, Nandagiri Hills,
+                                    Jubilee Hills, Hyderabad — 500033</span>
+                            </div>
+                        </div>
+
+                        <div class="map-info-item">
+                            <i class="fa-solid fa-clock"></i>
+                            <div>
+                                <strong>Studio Hours</strong>
+                                <span>Mon – Sat: 9:30 AM – 8:00 PM<br>Sunday: By appointment</span>
+                            </div>
+                        </div>
+
+                        <div class="map-info-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <div>
+                                <strong>Call / WhatsApp</strong>
+                                <a href="tel:+917352525252">+91 73525 25252</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="map-info-actions">
+                        <a href="https://maps.app.goo.gl/EJUN3DaFyWLcsny66" target="_blank" rel="noopener noreferrer"
+                            class="map-btn-gold">
+                            <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
+                        </a>
+                        <a href="https://wa.me/917352525252" target="_blank" rel="noopener noreferrer"
+                            class="map-btn-outline">
+                            <i class="fa-brands fa-whatsapp"></i> Message Us
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Map frame -->
+                <div class="map-frame-wrap">
+                    <span class="map-card-corner tl"></span>
+                    <span class="map-card-corner br"></span>
+                    <span class="map-live-badge"><span class="map-live-dot"></span> Live Map</span>
+                    <iframe title="FastTracks Car Care location map"
+                        src="https://maps.google.com/maps?q=FastTracks%20Car%20Care%20Jubilee%20Hills%20Hyderabad&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        width="100%" height="400" style="border: 0; border-radius: 16px;" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-top">
+
+            <div>
+                <a href="#home" class="brand-footer" aria-label="FastTracks home">
+                    <!-- Second image: The Wordmark -->
+                    <img src="fasttracks_wordmark.png" alt="FastTracks Wordmark" class="brand-footer-logo">
+                </a>
+
+                <p class="footer-text mt-6">
+                    Automotive craftsmanship, thoughtful customisation and premium
+                    vehicle care — all in one destination.
+                </p>
+
+                <div class="social-links">
+                    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"
+                        aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://wa.me/917352525252" target="_blank" rel="noopener noreferrer"
+                        aria-label="WhatsApp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="footer-heading">Explore</h3>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">Our Story</a>
+                    <a href="#ceo">Our CEO</a>
+                    <a href="#services">Services</a>
+                    <a href="#why-us">Why Us</a>
+                    <a href="#testimonials">Testimonials</a>
+                    <a href="#gallery">Gallery</a>
+                    <a href="#booking">Booking</a>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="footer-heading">Our Services</h3>
+                <div class="footer-links">
+                    <a href="#services">Interior Customisation</a>
+                    <a href="#services">PPF & Coatings</a>
+                    <a href="#services">Body Kits</a>
+                    <a href="#services">Deep Cleaning</a>
+                    <a href="#services">Vehicle Servicing</a>
+                </div>
+            </div>
+
+            <div class="footer-newsletter">
+                <h3 class="footer-heading">Stay in the Loop</h3>
+                <p class="footer-text mb-4">
+                    Join our newsletter for exclusive studio updates, care tips, and bespoke builds.
+                </p>
+
+                <!-- Newsletter Form -->
+                <form id="newsletterForm" class="newsletter-form">
+                    <div class="newsletter-input-group">
+                        <input type="email" id="newsletterEmail" placeholder="Your email address" required
+                            aria-label="Email address">
+                        <button type="submit" aria-label="Subscribe">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <p class="newsletter-success" id="newsletterSuccess">
+                        <i class="fa-solid fa-check-circle"></i> Thank you for subscribing!
+                    </p>
+                </form>
+
+                <!-- Contact Details -->
+                <div class="footer-contact-mini mt-6 pt-6">
+                    <p class="footer-text mb-2">
+                        <i class="fa-solid fa-location-dot gold mr-2"></i>
+                        Road No. 45, Jubilee Hills,<br>
+                        <span style="margin-left: 20px;">Hyderabad, Telangana 500033</span>
+                    </p>
+                    <a href="tel:+917352525252"
+                        class="footer-text inline-flex items-center gap-2 mt-2 hover:text-gold transition-colors">
+                        <i class="fa-solid fa-phone gold"></i>
+                        +91 73525 25252
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <span>© <span id="currentYear"></span> FASTTRACKS CAR CARE. All rights reserved.</span>
+
+            <div class="footer-legal-links">
+                <a href="#privacy">Privacy Policy</a>
+                <span class="legal-separator">•</span>
+                <a href="#terms">Terms &amp; Conditions</a>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP -->
+    <a class="whatsapp-float" href="https://wa.me/917352525252" target="_blank" rel="noopener noreferrer"
+        aria-label="Contact FastTracks on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <!-- BACK TO TOP BUTTON -->
+    <button id="backToTop" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+    <script>
+        // Ensure page always starts at the very top on load (no hash jump)
+        window.scrollTo(0, 0);
+        document.addEventListener('DOMContentLoaded', function () {
+            window.scrollTo(0, 0);
+        });
+        window.addEventListener('load', function () {
+            window.scrollTo(0, 0);
+        });
+
+        // HEADER: transparent at the top; white with dark text after scrolling.
+        const siteHeader = document.getElementById("siteHeader");
+        const scrollProgress = document.getElementById("scrollProgress");
+
+        function updateScrollUI() {
+            const scrollableHeight =
+                document.documentElement.scrollHeight - window.innerHeight;
+
+            const progress = scrollableHeight > 0
+                ? (window.scrollY / scrollableHeight) * 100
+                : 0;
+
+            scrollProgress.style.width = progress + "%";
+            siteHeader.classList.toggle("scrolled", window.scrollY > 35);
+        }
+
+        window.addEventListener("scroll", updateScrollUI, { passive: true });
+        updateScrollUI();
+
+        // MOBILE MENU
+        const menuToggle = document.getElementById("menuToggle");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const menuIcon = menuToggle.querySelector("i");
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove("open");
+            menuToggle.setAttribute("aria-expanded", "false");
+            menuToggle.setAttribute("aria-label", "Open navigation menu");
+            menuIcon.className = "fa-solid fa-bars";
+            document.body.classList.remove("menu-open");
+        }
+
+        menuToggle.addEventListener("click", () => {
+            const open = mobileMenu.classList.toggle("open");
+
+            menuToggle.setAttribute("aria-expanded", String(open));
+            menuToggle.setAttribute(
+                "aria-label",
+                open ? "Close navigation menu" : "Open navigation menu"
+            );
+
+            menuIcon.className = open
+                ? "fa-solid fa-xmark"
+                : "fa-solid fa-bars";
+
+            document.body.classList.toggle("menu-open", open);
+        });
+
+        mobileMenu.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", closeMobileMenu);
+        });
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 760) closeMobileMenu();
+        });
+
+        // HERO VIDEO SAFE FALLBACK
+        const heroVideo = document.getElementById("heroVideo");
+
+        if (heroVideo) {
+            // Start with 0 opacity
+            heroVideo.style.opacity = "0";
+            heroVideo.style.transition = "opacity 1.5s ease";
+
+            // When the video starts playing, fade it in smoothly
+            heroVideo.addEventListener("playing", () => {
+                heroVideo.style.opacity = "1";
+            });
+
+            // Force the video to play
+            const playPromise = heroVideo.play();
+
+            if (playPromise !== undefined) {
+                playPromise.catch((error) => {
+                    // If autoplay is blocked by the browser, hide the video
+                    // so the poster image shows beautifully instead.
+                    console.log("Video autoplay failed:", error);
+                    heroVideo.style.display = "none";
+                });
+            }
+
+            // If the video source is broken or fails to load
+            heroVideo.addEventListener("error", () => {
+                heroVideo.style.display = "none";
+            });
+        }
+
+        // SMOOTH SCROLL FOR ALL INTERNAL ANCHOR LINKS (with header offset)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const target = document.querySelector(targetId);
+                if (!target) return;
+
+                e.preventDefault();
+
+                const headerHeight = document.getElementById('siteHeader').offsetHeight;
+                const targetTop = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                window.scrollTo({
+                    top: targetTop,
+                    behavior: 'smooth'
+                });
+
+                // Update URL hash WITHOUT triggering a browser jump
+                if (history.pushState) {
+                    history.pushState(null, null, targetId);
+                }
+            });
+        });
+
+        // SERVICE IMAGE PREVIEW THAT FOLLOWS THE POINTER
+        const servicePreview = document.getElementById("servicePreview");
+        const servicePreviewImage = document.getElementById("servicePreviewImage");
+        const servicePreviewLabel = document.getElementById("servicePreviewLabel");
+        const serviceRows = document.querySelectorAll(".service-row");
+
+        function movePreview(event) {
+            const width = servicePreview.offsetWidth || 235;
+            const height = servicePreview.offsetHeight || 295;
+            const margin = 16;
+
+            const x = Math.min(
+                window.innerWidth - width - margin,
+                Math.max(margin, event.clientX + 22)
+            );
+
+            const y = Math.min(
+                window.innerHeight - height - margin,
+                Math.max(margin, event.clientY - height / 2)
+            );
+
+            servicePreview.style.left = x + "px";
+            servicePreview.style.top = y + "px";
+        }
+
+        serviceRows.forEach(row => {
+            row.addEventListener("mouseenter", event => {
+                if (window.innerWidth <= 760) return;
+
+                servicePreviewImage.src = row.dataset.image;
+                servicePreviewImage.alt = row.dataset.title || "Automotive service";
+                servicePreviewLabel.textContent = row.dataset.title || "Our Services";
+
+                servicePreview.classList.add("visible");
+                movePreview(event);
+            });
+
+            row.addEventListener("mousemove", event => {
+                if (window.innerWidth > 760) movePreview(event);
+            });
+
+            row.addEventListener("mouseleave", () => {
+                servicePreview.classList.remove("visible");
+            });
+        });
+
+        // SCROLL REVEAL: fade, slide and zoom elements into view.
+        const reduceMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        const revealElements = document.querySelectorAll(".reveal");
+
+        if (!reduceMotion && "IntersectionObserver" in window) {
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("in-view");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.12,
+                rootMargin: "0px 0px -35px 0px"
+            });
+
+            revealElements.forEach(element => revealObserver.observe(element));
+        } else {
+            revealElements.forEach(element => element.classList.add("in-view"));
+        }
+
+        // ANIMATED NUMBER COUNTERS
+        const counters = document.querySelectorAll(".counter");
+
+        function animateCounter(element) {
+            const target = Number(element.dataset.target);
+            const suffix = element.dataset.suffix || "";
+            const duration = 1500;
+            const startTime = performance.now();
+
+            function tick(now) {
+                const progress = Math.min((now - startTime) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 4);
+                const current = Math.round(target * eased);
+
+                element.textContent = current.toLocaleString() + suffix;
+
+                if (progress < 1) requestAnimationFrame(tick);
+            }
+
+            requestAnimationFrame(tick);
+        }
+
+        if (!reduceMotion && "IntersectionObserver" in window) {
+            const counterObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.7 });
+
+            counters.forEach(counter => counterObserver.observe(counter));
+        } else {
+            counters.forEach(counter => {
+                counter.textContent =
+                    Number(counter.dataset.target).toLocaleString() +
+                    (counter.dataset.suffix || "");
+            });
+        }
+
+        // ACTIVE NAV LINK WHILE SCROLLING
+        const navLinks = document.querySelectorAll(".desktop-nav .nav-link");
+        const observedSections = document.querySelectorAll(
+            "#home, #about, #ceo, #services, #why-us, #testimonials, #gallery, #booking, #location-map"
+        );
+
+        if ("IntersectionObserver" in window) {
+            const sectionObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            const active = link.getAttribute("href") === "#" + entry.target.id;
+                            link.classList.toggle("active", active);
+                        });
+                    }
+                });
+            }, {
+                rootMargin: "-30% 0px -60% 0px",
+                threshold: 0
+            });
+
+            observedSections.forEach(section => sectionObserver.observe(section));
+        }
+
+        // BOOKING FORM: validate and open WhatsApp with the enquiry.
+        const bookingForm = document.getElementById("bookingForm");
+        const visitDate = document.getElementById("visitDate");
+
+        const today = new Date();
+        visitDate.min = [
+            today.getFullYear(),
+            String(today.getMonth() + 1).padStart(2, "0"),
+            String(today.getDate()).padStart(2, "0")
+        ].join("-");
+
+        bookingForm.addEventListener("submit", event => {
+            event.preventDefault();
+
+            if (!bookingForm.reportValidity()) return;
+
+            const formData = new FormData(bookingForm);
+
+            const name = formData.get("name").trim();
+            const phone = formData.get("phone").trim();
+            const vehicle = formData.get("vehicle").trim();
+            const service = formData.get("service");
+            const date = formData.get("date") || "Not specified";
+            const message = formData.get("message").trim() || "No additional details";
+
+            const whatsappMessage = [
+                "Hello FastTracks Car Care!",
+                "",
+                "I would like to enquire about a service.",
+                "",
+                "Name: " + name,
+                "Phone: " + phone,
+                "Vehicle: " + vehicle,
+                "Service: " + service,
+                "Preferred date: " + date,
+                "Requirements: " + message
+            ].join("\n");
+
+            const whatsappURL =
+                "https://wa.me/917352525252?text=" +
+                encodeURIComponent(whatsappMessage);
+
+            window.open(whatsappURL, "_blank", "noopener,noreferrer");
+        });
+        // CEO IMAGE SLIDER
+        document.addEventListener("DOMContentLoaded", () => {
+            const ceoImages = document.querySelectorAll('.ceo-slider .ceo-image');
+            let currentCeoIndex = 0;
+
+            if (ceoImages.length > 1) {
+                setInterval(() => {
+                    // Remove active class from current image
+                    ceoImages[currentCeoIndex].classList.remove('active');
+
+                    // Move to next image (loop back to start if at the end)
+                    currentCeoIndex = (currentCeoIndex + 1) % ceoImages.length;
+
+                    // Add active class to new image
+                    ceoImages[currentCeoIndex].classList.add('active');
+                }, 10000); // 10000ms = 10 seconds
+            }
+        });
+        // TESTIMONIAL SLIDER
+        (function () {
+            const track = document.getElementById("testimonialTrack");
+            const cards = track.querySelectorAll(".testimonial-card");
+            const prevBtn = document.getElementById("testimonialPrev");
+            const nextBtn = document.getElementById("testimonialNext");
+            const dotsContainer = document.getElementById("testimonialDots");
+
+            let currentIndex = 0;
+            let cardsPerView = window.innerWidth <= 760 ? 1 : 2;
+            const totalCards = cards.length;
+            let maxIndex = Math.max(0, totalCards - cardsPerView);
+
+            function updateLayout() {
+                cardsPerView = window.innerWidth <= 760 ? 1 : 2;
+                maxIndex = Math.max(0, totalCards - cardsPerView);
+                if (currentIndex > maxIndex) currentIndex = maxIndex;
+                goTo(currentIndex);
+            }
+
+            function buildDots() {
+                dotsContainer.innerHTML = "";
+                const dotCount = maxIndex + 1;
+                for (let i = 0; i < dotCount; i++) {
+                    const dot = document.createElement("button");
+                    dot.className = "testimonial-dot";
+                    dot.setAttribute("aria-label", "Go to testimonial group " + (i + 1));
+                    dot.addEventListener("click", () => {
+                        currentIndex = i;
+                        goTo(currentIndex);
+                    });
+                    dotsContainer.appendChild(dot);
+                }
+            }
+
+            function goTo(index) {
+                if (index < 0) index = 0;
+                if (index > maxIndex) index = maxIndex;
+                currentIndex = index;
+
+                const cardWidth = cards[0].offsetWidth;
+                const gap = 26;
+                const offset = index * (cardWidth + gap);
+
+                track.style.transform = "translateX(-" + offset + "px)";
+
+                const dots = dotsContainer.querySelectorAll(".testimonial-dot");
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle("active", i === currentIndex);
+                });
+            }
+
+            prevBtn.addEventListener("click", () => {
+                goTo(currentIndex - 1);
+            });
+
+            nextBtn.addEventListener("click", () => {
+                goTo(currentIndex + 1);
+            });
+
+            let autoSlide = setInterval(() => {
+                goTo(currentIndex >= maxIndex ? 0 : currentIndex + 1);
+            }, 6000);
+
+            track.addEventListener("mouseenter", () => clearInterval(autoSlide));
+            track.addEventListener("mouseleave", () => {
+                autoSlide = setInterval(() => {
+                    goTo(currentIndex >= maxIndex ? 0 : currentIndex + 1);
+                }, 6000);
+            });
+
+            let startX = 0;
+            let isDragging = false;
+
+            track.addEventListener("touchstart", (e) => {
+                startX = e.touches[0].clientX;
+                isDragging = true;
+            }, { passive: true });
+
+            track.addEventListener("touchend", (e) => {
+                if (!isDragging) return;
+                isDragging = false;
+                const diff = e.changedTouches[0].clientX - startX;
+                if (Math.abs(diff) > 50) {
+                    if (diff < 0) {
+                        goTo(currentIndex + 1);
+                    } else {
+                        goTo(currentIndex - 1);
+                    }
+                }
+            }, { passive: true });
+
+            let resizeTimer;
+            window.addEventListener("resize", () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    updateLayout();
+                    buildDots();
+                    goTo(currentIndex);
+                }, 200);
+            });
+
+            buildDots();
+            goTo(0);
+
+        })();
+
+        // NEWSLETTER SUBSCRIPTION
+        const newsletterForm = document.getElementById("newsletterForm");
+
+        if (newsletterForm) {
+            newsletterForm.addEventListener("submit", function (e) {
+                e.preventDefault(); // Prevent page reload
+
+                // Check if input is valid
+                const emailInput = document.getElementById("newsletterEmail");
+                if (!emailInput.checkValidity()) {
+                    emailInput.reportValidity();
+                    return;
+                }
+
+                // Add success class to trigger CSS animation
+                this.classList.add("success");
+
+                // Optional: Reset form after 4 seconds
+                setTimeout(() => {
+                    this.reset();
+                    this.classList.remove("success");
+                }, 4000);
+            });
+        }
+
+        // BACK TO TOP BUTTON LOGIC
+        const backToTopBtn = document.getElementById("backToTop");
+
+        window.addEventListener("scroll", () => {
+            // Show button when scrolled past 300px
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add("show");
+            } else {
+                backToTopBtn.classList.remove("show");
+            }
+        }, { passive: true });
+
+        backToTopBtn.addEventListener("click", () => {
+            // Custom smooth scroll function
+            const scrollToTop = () => {
+                const currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
+
+                if (currentPosition > 0) {
+                    // Adjust the '20' to change the speed. Higher number = faster, lower number = slower.
+                    window.requestAnimationFrame(scrollToTop);
+                    window.scrollTo(8, currentPosition - currentPosition / 8);
+                }
+            };
+
+            scrollToTop();
+        });
+
+        // FOOTER YEAR
+        document.getElementById("currentYear").textContent =
+            new Date().getFullYear();
+    </script>
+</body>
+
+</html>
