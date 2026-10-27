@@ -553,13 +553,17 @@
             text-transform: uppercase;
         }
 
+        /* Remove the old 'animation: fadeUp...' lines from these classes and replace with this */
+
         .eyebrow {
             display: flex;
             align-items: center;
             gap: 14px;
             margin-bottom: 28px;
             color: var(--gold);
-            animation: fadeUp .9s .15s both;
+            opacity: 0;
+            /* Hidden initially */
+            transform: translateY(28px);
         }
 
         .eyebrow::before {
@@ -576,7 +580,9 @@
             font-weight: 400;
             line-height: 1.02;
             letter-spacing: -3px;
-            animation: fadeUp 1s .3s both;
+            opacity: 0;
+            /* Hidden initially */
+            transform: translateY(28px);
         }
 
         .hero h1 em {
@@ -590,7 +596,9 @@
             color: rgba(255, 255, 255, .76);
             font-size: 13px;
             line-height: 2;
-            animation: fadeUp 1s .45s both;
+            opacity: 0;
+            /* Hidden initially */
+            transform: translateY(28px);
         }
 
         .hero-actions {
@@ -598,7 +606,33 @@
             flex-wrap: wrap;
             gap: 15px;
             margin-top: 34px;
+            opacity: 0;
+            /* Hidden initially */
+            transform: translateY(28px);
+        }
+
+        /* =========================================
+           HERO ANIMATION CLASSES (Triggered by JS)
+           ========================================= */
+        .hero-animate.eyebrow {
+            animation: fadeUp .9s .1s both;
+            /* Starts immediately */
+        }
+
+        .hero-animate.hero h1,
+        .hero-animate h1 {
+            animation: fadeUp 1s .3s both;
+            /* Starts 0.3s after loader */
+        }
+
+        .hero-animate .hero-description {
+            animation: fadeUp 1s .45s both;
+            /* Starts 0.45s after loader */
+        }
+
+        .hero-animate .hero-actions {
             animation: fadeUp 1s .6s both;
+            /* Starts 0.6s after loader */
         }
 
         .hero-bottom {
@@ -690,7 +724,7 @@
 
         .about-image-wrap {
             position: relative;
-            min-height: 500px;
+            min-height: 650px;
         }
 
         .about-image {
@@ -710,8 +744,8 @@
             position: absolute;
             right: 0;
             bottom: 0;
-            width: 55%;
-            height: 45%;
+            width: 35%;
+            height: 27%;
             border: 1px solid var(--gold);
             pointer-events: none;
         }
@@ -2668,7 +2702,7 @@
             }
 
             .brand-footer-logo {
-                width: 180px;
+                width: 220px;
                 /* Smaller wordmark for mobile */
             }
 
@@ -2857,6 +2891,84 @@
                 transform: none;
             }
         }
+
+        /* =========================================
+           PRELOADER (CREAM THEME & SPINNING RING)
+           ========================================= */
+        #siteLoader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background-color: #f4f0e9;
+            /* Matches your screenshot exactly */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Smooth curtain reveal */
+            transition: transform 1s cubic-bezier(0.8, 0, 0.2, 1), opacity 0.8s ease;
+        }
+
+        .loader-wrapper {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* The spinning gold ring */
+        .loader-ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            /* Creates the gold arc using conic-gradient */
+            border-top-color: #c7a56b;
+            border-right-color: rgba(199, 165, 107, 0.2);
+            border-bottom-color: rgba(199, 165, 107, 0.2);
+            border-left-color: rgba(199, 165, 107, 0.2);
+            animation: spinRing 1.2s linear infinite;
+        }
+
+        /* The logo in the center */
+        .loader-logo {
+            width: 60px;
+            /* Adjust if your logo is too big/small */
+            height: auto;
+            /* Removes the white background of the logo seamlessly */
+            mix-blend-mode: multiply;
+            animation: pulseLogo 2s ease-in-out infinite alternate;
+        }
+
+        /* When the page is fully loaded, the loader slides up and fades out */
+        #siteLoader.loaded {
+            opacity: 0;
+            transform: translateY(-100%);
+            pointer-events: none;
+        }
+
+        @keyframes spinRing {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulseLogo {
+            0% {
+                transform: scale(0.92);
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
     </style>
 
     <!-- Force page to start at top on reload / hash entry -->
@@ -2870,10 +2982,22 @@
         }
         // Force top before paint
         window.scrollTo(0, 0);
+
+
     </script>
 </head>
 
 <body>
+    <!-- PRELOADER -->
+    <div id="siteLoader">
+        <div class="loader-wrapper">
+            <!-- Rotating gold ring -->
+            <div class="loader-ring"></div>
+            <!-- Center Logo -->
+            <img src="fasttracks_icon.png" alt="FastTracks Loading" class="loader-logo">
+        </div>
+    </div>
+
     <div id="scrollProgress"></div>
 
     <!-- HEADER -->
@@ -2927,10 +3051,10 @@
             <div class="hero-fallback" aria-hidden="true"></div>
 
             <video id="heroVideo" autoplay loop muted playsinline preload="auto"
-                poster="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=2200&q=85"
+                poster=""
                 aria-hidden="true">
                 <!-- Reliable cinematic car video -->
-                <source src="https://cdn.coverr.co/videos/coverr-a-luxury-sports-car-in-a-dark-room-1573/1080p.mp4"
+                <source src="bg.mp4"
                     type="video/mp4">
             </video>
 
@@ -2990,7 +3114,7 @@
 
                 <div class="about-image-wrap reveal from-left">
                     <img class="about-image"
-                        src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1100&q=85"
+                        src="pp1.png"
                         alt="Luxury sports car" loading="lazy">
                     <div class="about-image-accent"></div>
                     <div class="experience-card">
@@ -3772,6 +3896,30 @@
         <i class="fa-solid fa-arrow-up"></i>
     </button>
     <script>
+
+        // PRELOADER LOGIC
+        window.addEventListener("load", function () {
+            const loader = document.getElementById("siteLoader");
+            // Minimum display time of 1.5 seconds so the animation feels intentional
+            setTimeout(() => {
+                loader.classList.add("loaded");
+            }, 1000);
+        });
+        // PRELOADER LOGIC & HERO SYNC
+        window.addEventListener("load", function () {
+            const loader = document.getElementById("siteLoader");
+            const heroContent = document.querySelector(".hero-content"); // Select the wrapper
+
+            // Kept your 1.5s (1000ms) loader timing
+            setTimeout(() => {
+                // 1. Trigger the curtain reveal
+                loader.classList.add("loaded");
+
+                // 2. Add the animation class to the hero content right as it reveals
+                heroContent.classList.add("hero-animate");
+
+            }, 1000);
+        });
         // Ensure page always starts at the very top on load (no hash jump)
         window.scrollTo(0, 0);
         document.addEventListener('DOMContentLoaded', function () {
